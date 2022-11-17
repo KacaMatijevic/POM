@@ -6,16 +6,16 @@ namespace SeleniumPOM;
 
 public class TestClass
 {
-    private LoginPage _loginPage;
-    private HomePage _homePage;
+    private LoginPage loginPage;
+    private HomePage homePage;
 
     [SetUp]
 
     public void BeforeScenario()
     {
         WebDriver.Initialize();
-        _loginPage = new LoginPage();
-        _homePage = new HomePage();
+        loginPage = new LoginPage();
+        homePage = new HomePage();
 
     }
 
@@ -32,14 +32,23 @@ public class TestClass
     {
 
         Login("execute", "automation");
+        homePage.Initial.SendKeys("KM");
+        homePage.Title("Ms.");
+        homePage.FirstName.SendKeys("Katarina");
+        homePage.MiddleName.SendKeys("Matijevic");
+        homePage.Female.Click();
+        homePage.Hindi.Click();
+        homePage.SaveButton.Click();
     }
 
     [Test]
     public void TC02_OpenPopUp_ShouldDisplayed()
     {
         Login("execute", "automation");
+        homePage.HtmlPopup.Click();
 
-    
+
+
     }
 
 
@@ -47,6 +56,7 @@ public class TestClass
     public void TC03_OpenAlert_ShouldDisplayed()
     {
         Login("execute", "automation");
+        homePage.Alert();
 
      
     }
@@ -54,6 +64,6 @@ public class TestClass
 
     public void Login(string name, string pass)
     {
-        _loginPage.LoginOnPage(name, pass);
+        loginPage.LoginOnPage(name, pass);
     }
 }
